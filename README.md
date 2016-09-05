@@ -1,4 +1,4 @@
-# cOctopus - A community resource for configuring Octopus tentacles 
+# cOctopus - A community resource for configuring Octopus 
 
 The OctopusDSC resource today has a few issues: it's not on PSGallery, not being maintained, requires the tentacle IP and requires manual fixes to be able to used together with Azure Automation (Pull server). 
 
