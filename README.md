@@ -9,25 +9,35 @@ Also providing some better examples / documentation on how to automate and confi
 # Installing tentacle - MSI - default DSC resources 
 To install the node (required for being able to configure and use this module) and assuming you've imported Import-DSCResource xPSDesiredStateConfiguration, you can easily add the following for installing the MSI package deliver from Octopus. 
 
-    File OctopusTentacle 
-    {
-      DestinationPath = "C:\Octopus\Tentacle.msi"
-      SourcePath = "\\Server\InstallationFiles\Tentacle.msi"
-      Ensure = "Present"
-      Type = "File"
-      Credential = $myCredential
-      Checksum = "modifiedDate"
-      Force = $true
-      MatchSource = $true
+
+     configuration TentacleServerConfiguration {
+        param(
+           [Parameter(Mandatory=$true)][PSCredential]$fileShareCredential
+        )
+        Import-DscResource -ModuleName PSDesiredStateConfiguration
+        Import-DscResource -ModuleName xPSDesiredStateConfiguration 
+        
+        File OctopusTentacle 
+        {
+          DestinationPath = "C:\Octopus\Tentacle.msi"
+          SourcePath = "\\Server\InstallationFiles\Tentacle.msi"
+          Ensure = "Present"
+          Type = "File"
+          Credential = $fileShareCredential
+          Checksum = "modifiedDate"
+          Force = $true
+          MatchSource = $true
+        }
+          
+        Package OctopusDeployTentacle
+        { 
+          Name = 'Octopus Deploy Tentacle' 
+          DependsOn = '[File]OctopusTentacle'
+          Ensure = 'Present' 
+          Path = 'C:\Octopus\Tentacle.msi' 
+          ProductId = "6E3B06FB-FC97-4C5C-AC27-91C5DA3F73E4" # 2.6 - Find the right product ID for your version
+        }
     }
-      
-    Package OctopusDeployTentacle
-    { 
-      Name = 'Octopus Deploy Tentacle' 
-      DependsOn = '[File]OctopusTentacle'
-      Ensure = 'Present' 
-      Path = 'C:\Octopus\Tentacle.msi' 
-      ProductId = "6E3B06FB-FC97-4C5C-AC27-91C5DA3F73E4" # 2.6 - Find the right product ID for your version
-    }
+    
 
 # Configuring tentacle - using this module
