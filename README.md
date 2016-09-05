@@ -1,12 +1,12 @@
 # cOctopus - An updated DSC resource for configuring Octopus tentacles 
 
-The OctopusDSC resource today has a few issues ; it's not on PSGallery, requires the tentacle IP and is requires manual fixes to be able to used together with Azure Automation (Pull server). 
+The OctopusDSC resource today has a few issues: it's not on PSGallery, not being maintained, requires the tentacle IP and requires manual fixes to be able to used together with Azure Automation (Pull server). 
 
-This resource uses the OctopusDSC as an inspiration; but adds these features and is pushed and published to the PSGallery so they can be used seemleasly with the PS tooling support that comes with WMF5 and through the Azure portal. 
+The intention of this community extension is to make a resource using  the OctopusDSC as an inspiration; and add the features needed and pushing it to PSGallery so they can be used seemleasly with the PS tooling support that comes with WMF5 and through the Azure portal. 
 
-Also adding an example on how to automate the installation of the tenacle prior to configuring the tentacle. 
+Also providing some better examples / documentation on how to automate and configure the installation of the tenacle prior to configuring it. 
 
-# Installing tentacle, no configuration
+# Installing tentacle - MSI - default DSC resources 
 To install the node (required for being able to configure and use this module) and assuming you've imported Import-DSCResource xPSDesiredStateConfiguration, you can easily add the following for installing the MSI package deliver from Octopus. 
 
     File OctopusTentacle 
