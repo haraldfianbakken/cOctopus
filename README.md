@@ -11,23 +11,23 @@ To install the node (required for being able to configure and use this module) a
 
     File OctopusTentacle 
     {
-     DestinationPath = "C:\Octopus\Tentacle.msi"
-     SourcePath = "\\Server\InstallationFiles\Tentacle.msi"
-     Ensure = "Present"
-     Type = "File"
-     Credential = $myCredential
-     Checksum = "modifiedDate"
-     Force = $true
-     MatchSource = $true
+      DestinationPath = "C:\Octopus\Tentacle.msi"
+      SourcePath = "\\Server\InstallationFiles\Tentacle.msi"
+      Ensure = "Present"
+      Type = "File"
+      Credential = $myCredential
+      Checksum = "modifiedDate"
+      Force = $true
+      MatchSource = $true
     }
       
     Package OctopusDeployTentacle
     { 
-     Name = 'Octopus Deploy Tentacle' 
-     DependsOn = '[File]OctopusTentacle'
-     Ensure = 'Present' 
-     Path = 'C:\Octopus\Tentacle.msi' 
-     ProductId = "6E3B06FB-FC97-4C5C-AC27-91C5DA3F73E4" # 2.6 - Find the right product ID for your version
+      Name = 'Octopus Deploy Tentacle' 
+      DependsOn = '[File]OctopusTentacle'
+      Ensure = 'Present' 
+      Path = 'C:\Octopus\Tentacle.msi' 
+      ProductId = "6E3B06FB-FC97-4C5C-AC27-91C5DA3F73E4" # 2.6 - Find the right product ID for your version
     }
 
 # Configuring tentacle - using this module
