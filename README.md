@@ -20,6 +20,7 @@ Installing the tentacle without configuring (using default resources)
      Force = $true
      MatchSource = $true
     }
+      
     Package OctopusDeployTentacle
     { 
      Name = 'Octopus Deploy Tentacle' 
@@ -27,4 +28,4 @@ Installing the tentacle without configuring (using default resources)
      Ensure = 'Present' 
      Path = 'C:\Octopus\Tentacle.msi' 
      ProductId = "6E3B06FB-FC97-4C5C-AC27-91C5DA3F73E4" # 2.6 - Find the right product ID for your version
-   }
+    }
